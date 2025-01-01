@@ -8,11 +8,11 @@ class Config
 {
     private static Config $instance;
 
-    private string $databaseHost = 'localhost';
+    private string $databaseHost = 'tic_tac_toe_test_db';
     private int $databasePort = 3306;
     private string $databaseName = 'tic_tac_toe';
     private string $databaseUsername = 'tic_tac_toe';
-    private ?string $databasePassword = null;
+    private ?string $databasePassword = 'tic_tac_toe';
     private string $databaseCharset = 'utf8mb4';
 
     private function __construct(string $configPath)
