@@ -17,7 +17,8 @@ class Config
 
     private function __construct(string $configPath)
     {
-        include $configPath;
+        require_once __DIR__ . '/Config.php';
+
     }
 
     public static function initConfig(string $configPath): void
