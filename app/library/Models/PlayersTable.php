@@ -21,11 +21,33 @@ class PlayersTable extends AbstractTable
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
+    //will probably remove this function or change it 
     public function getAllPlayers(): array
     {
         $stmt = $this->pdo->query("SELECT * FROM {$this->table}");
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    
+    //fetches top players based on grid and playtime
+    public function getTopPlayers(): array
+{
+    $stmt = $this->pdo->query("
+        SELECT * 
+        FROM players 
+        ORDER BY grid_size DESC, play_time_seconds DESC 
+        LIMIT 20
+    ");
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+    //retrieves total amount of players
+    public function getTotalPlayers(): int
+{
+    $stmt = $this->pdo->query("SELECT COUNT(*) as total FROM players");
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    return (int)$result['total'];
+}
+
 
     protected function getTableName(): string
     {
@@ -47,7 +69,7 @@ class PlayersTable extends AbstractTable
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }*/
 
-    public function getLeaders(int $gridSize): array
+    /*public function getLeaders(int $gridSize): array
     {
         $stmt = $this->pdo->prepare("
             
@@ -63,9 +85,9 @@ class PlayersTable extends AbstractTable
         
         $stmt->execute([':grid_size' => $gridSize]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
+    }*/
 
-    public function addRow(string $name, int $gridSize, int $playTimeSeconds, string $date): void
+    /*public function addRow(string $name, int $gridSize, int $playTimeSeconds, string $date): void
     {
         $stmt = $this->pdo->prepare("
             
@@ -81,5 +103,5 @@ class PlayersTable extends AbstractTable
                 ':date' => $date,
             ]);
         
-    }
+    }*/
 }
