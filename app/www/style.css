@@ -24,3 +24,11 @@ body {
     text-align: center;
     line-height: 0;
 }
+
+/*for the table rows that are displayed in the leaderboard*/
+th, td {
+    padding: 5px;
+    text-align: left; 
+    margin: auto;
+}
+

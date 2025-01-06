@@ -8,9 +8,10 @@
 ?>
 
 <div class="row content-container col-xs-12">
-   
+<!-- displays total number of players from the leaderboardcontroller function-->   
+<p>Total number of Players: <?= htmlspecialchars($this->totalPlayers) ?></p>
 </div>
-<!--displaying data from the players table, will change again soon for cleaner look, need to sort based on highest ranking.   -->
+<!--displaying data from the players table, is sorted based on highest grid and playtime.   -->
 <table>
     <thead>
         <tr>
