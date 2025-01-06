@@ -6,6 +6,19 @@
  */
 
 ?>
+<!--checks if current player is active, otherwise create new player. -->
+<div class="row content-container col-xs-12">
+    <?php if (!empty($this->currentPlayer)): ?>
+        <p>Welcome, <?= htmlspecialchars($this->$currentPlayer['name']) ?>! Ready to play?</p>
+    <?php else: ?>
+        <form method="post" action="/index/create-player">
+            <label for="player_name">Enter your name:</label>
+            <input type="text" id="player_name" name="player_name" required />
+            <input type="submit" value="Create Player" />
+        </form>
+    <?php endif; ?>
+</div>
+
 <div class="toolbar">
     <form>
         <label for="grid_size">Grid size</label>
@@ -37,5 +50,16 @@
                 </tr>
             <?php } ?>
         </table>
+    </div>
+</div>
+
+<!-- Modal to show message -->
+<div id="winner-modal" class="modal" style="display:none;">
+    <div class="modal-content">
+        <h2>Congratulations, you've won!</h2>
+        <div id="leaderboard-container">
+            <!-- Leaderboard will be shown inside this container if player have won -->
+        </div>
+        <button id="close-modal">Close</button>
     </div>
 </div>
