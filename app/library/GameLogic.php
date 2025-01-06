@@ -28,21 +28,20 @@ class GameLogic
         $this->matrix = $matrix;
     }
 
-    /**
-     * Good enough for MVP.
-     * No one will notice.
-     */
+  //loops through rows and columns, to find an empty spot.
     public function findBestMove(): array
     {
-        $gridSize = count($this->matrix) - 1;
-        $row = rand(0, $gridSize);
-        $col = rand(0, $gridSize);
+        $gridSize = count($this->matrix);
 
-        if ($this->matrix[$row][$col] === '') {
-            return [$row, $col];
+        for ($row = 0; $row < $gridSize; $row++) {
+            for ($col = 0; $col < $gridSize; $col++) {
+                if ($this->matrix[$row][$col] === '') {
+                    return [$row, $col];
+                }
+            }
         }
-
-        return $this->findBestMove();
+        //this should only occur if the current game is out of positions to use.
+        throw new \LogicException('No valid moves available.');
     }
 
     public function setComputersMove(int $row, int $col): void
